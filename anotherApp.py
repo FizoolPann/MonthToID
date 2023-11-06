@@ -34,7 +34,7 @@ st.title("VIEWS Month-Year to Month-ID Converter")
 
 # Create drop-down menus for month and year
 selected_month = st.selectbox("Select a month:", list(month_name_to_number.keys()), index=0)
-selected_year = st.selectbox("Select a year:", list(range(1980, 2050)), index=0)
+selected_year = st.selectbox("Select a year:", list(range(1980, 2051)), index=0)
 
 # Convert selected month and year to month ID
 month_id = month_year_to_id(selected_month, selected_year)
