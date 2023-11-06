@@ -30,7 +30,7 @@ def id_to_month_year(month_id, base_year=1980):
 
     return target_date.strftime("%B %Y")
 
-st.title("VIEWS Month ID to Month-Year Converter")
+st.title("VIEWS Month-Year to Month-ID Converter")
 
 # Create drop-down menus for month and year
 selected_month = st.selectbox("Select a month:", list(month_name_to_number.keys()), index=0)
@@ -42,7 +42,7 @@ month_id = month_year_to_id(selected_month, selected_year)
 if month_id is not None:
     if st.button("Convert"):
         result = id_to_month_year(month_id)
-        st.markdown(f"<p style='font-size:24px;'><b>The corresponding month for ID {month_id} is: {result}</b></p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='font-size:24px;'><b>For {result} the corresponding month ID is {month_id}</b></p>", unsafe_allow_html=True)
 else:
     st.error("Please select a valid month and year.")
 
