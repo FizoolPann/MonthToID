@@ -1,17 +1,23 @@
 import streamlit as st
 from datetime import datetime, timedelta
 
+# Define a dictionary to map month names to their corresponding numbers
+month_name_to_number = {
+    "January": 1, "February": 2, "March": 3, "April": 4, "May": 5, "June": 6,
+    "July": 7, "August": 8, "September": 9, "October": 10, "November": 11, "December": 12
+}
+
 def month_year_to_id(month, year, base_year=1980):
     try:
         # Convert the selected month and year to a date
-        selected_date = datetime(int(year), int(month), 1)
+        selected_date = datetime(int(year), month_name_to_number[month], 1)
 
         # Calculate the month ID
         base_date = datetime(base_year, 1, 1)
         month_id = ((selected_date.year - base_date.year) * 12) + (selected_date.month - base_date.month) + 1
 
         return month_id
-    except ValueError:
+    except (ValueError, KeyError):
         return None
 
 def id_to_month_year(month_id, base_year=1980):
@@ -27,7 +33,7 @@ def id_to_month_year(month_id, base_year=1980):
 st.title("VIEWS Month ID to Month-Year Converter")
 
 # Create drop-down menus for month and year
-selected_month = st.selectbox("Select a month:", list(range(1, 13)), index=0)
+selected_month = st.selectbox("Select a month:", list(month_name_to_number.keys()), index=0)
 selected_year = st.selectbox("Select a year:", list(range(1980, datetime.now().year + 1)), index=0)
 
 # Convert selected month and year to month ID
